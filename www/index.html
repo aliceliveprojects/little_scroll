@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link rel="manifest" href="manifest.json">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+
+  <!-- ng-app connects the html to the angular module declared in app.js -->
+  <!-- ng-controller connects the controller for this page to the controller that was created in app.js and gives it the alias "vm", so that angular knows that vm.randomVariableName, refers to a property of the vm object in the controller in app.js (which is an extension of the controller itself) -->
+  <body ng-app="starter" ng-controller="AnimationExample as vm">
+
+    <div> <!-- groups the controls at the top into a box -->
+
+      <!-- ng-click binds the DOM click event of the button to the animate function from the controller -->
+      <button ng-click="vm.animate()">Animate</button>
+
+
+      <!-- ng-model binds the value of the dropdown to the value of vm.selectedAnimation from the controller. AngularJS uses something called 2 way binding to update the values as they are changed on either end of the binding. If the value of the variable was to change, the text in the dropdown would change. If the text in the dropdown (imagine a textbox if it helps) were to change, the change would immediately be reflected in the variable which is in the controller.-->
+      <select ng-model="vm.selectedAnimation">
+        <!-- ng-repeat simply iterates over an array (in this case the array is vm.availableAnimations and creates the element that it is used on (in this case the option element), repeatedly for each element in the array-->
+        <option ng-repeat="x in vm.availableAnimations" value="{{x}}">{{x}}</option>
+      </select>
+
+      <!-- Same as the one above -->
+      <select ng-model="vm.selectedText">
+        <option ng-repeat="x in vm.availableText" value="{{x}}">{{x}}</option>
+      </select>
+    </div>
+
+    <!-- needs ID so that the animate function can select the element
+    {{vm.selectedText}} displays the value of that variable as text so that the user can see the message (for this demo it is preset and can be changed via the dropdowns) -->
+    <h3>Select the animation and message. Then press the "Animate" button. Don't worry if it doesn't do what you think it will straight away. There is a little bit of a delay.</h3>
+    <h1 id="animated-text">{{vm.selectedText}}</h1>
+
+  </body> 
+</html>

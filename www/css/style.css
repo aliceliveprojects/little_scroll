@@ -1,0 +1,23 @@
+
+/* Center the h1 from the html, set it to a large font size and disable word wrap so thath it is all on one line */
+/* translate it off the screen completely so that it can be animated onto the screen */
+#animated-text {
+  position: absolute;
+  top: 50%;
+  transform: translateX(100%);
+  white-space: nowrap;
+  font-size: 10rem;
+  background-color: red;
+}
+
+/* declare the class that will add the animation (using linear speed curve to keep the scroll speed consistent)*/
+.scroll {
+  animation: scroll 10s forwards linear;
+}
+
+/* declare the animation moves the text from 100% off screen (to the right) to 90% off screen (to the left). Can control direction using negatives */
+@keyframes scroll {
+  100% {
+    transform: translateX(-90%);
+  }
+}
