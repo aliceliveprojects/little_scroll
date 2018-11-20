@@ -7,7 +7,6 @@
   transform: translateX(100%);
   white-space: nowrap;
   font-size: 10rem;
-  background-color: red;
 }
 
 /* declare the class that will add the animation (using linear speed curve to keep the scroll speed consistent)*/
