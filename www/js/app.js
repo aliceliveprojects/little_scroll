@@ -38,12 +38,11 @@
   // control is the name of the function which declares any variables and functions that the view needs
   app.controller('AnimationExample', control);
 
-  // inject services that you need
-  control.$inject = ['$animate'];
+  // inject services that you need (in this case we don't need any :D )
+  control.$inject = [];
 
   // pass the service to the function that is passed to the app.controller() function
-  function control($animate) {
-
+  function control() {
     // vm -> View Model - angular.extend takes one object and adds the properties of another object onto it.
     var vm = angular.extend(this, {
       selectedAnimation: '',
@@ -54,17 +53,24 @@
       availableText: [
         'This is a very very very very long message which is here to demo the scrolling animation',
         'This is a shorter message'
-      ]
+      ],
+      animating: false,
+      animateButtonState: 'Animate'
     });
 
+    
     // setting up default values
     vm.selectedAnimation = vm.availableAnimations[0];
     vm.selectedText = vm.availableText[0];
-
+    
     // declaring the function that executes when the button is pressed
     vm.animate = function() {
-      // using the $animate service to add a class to the h1 element that will scroll along the screen. vm.selectedAnimation <- make sure this has the same name as the css class which adds the animation to the element.
-      $animate.addClass(document.querySelector('#animated-text'), vm.selectedAnimation);
+      // toggling this boolean value to prompt angularjs to add the selectedAnimation as a class to the element.
+      // This will trigger the animation based on the name of the css class (in this case 'scroll')
+      vm.animating = !vm.animating;
+
+      // the text of the 'Animate' button has angularjs 2 way binding so updating the variable which gives it it's name according to the state of the boolean will change the text to the appropriate value.
+      vm.animateButtonState = (vm.animating === true) ? 'Reset' : 'Animate';
     }
   }
 

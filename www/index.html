@@ -25,7 +25,7 @@
     <div> <!-- groups the controls at the top into a box -->
 
       <!-- ng-click binds the DOM click event of the button to the animate function from the controller -->
-      <button ng-click="vm.animate()">Animate</button>
+      <button ng-click="vm.animate()" ng-model="vm.animateButtonState">{{vm.animateButtonState}}</button>
 
 
       <!-- ng-model binds the value of the dropdown to the value of vm.selectedAnimation from the controller. AngularJS uses something called 2 way binding to update the values as they are changed on either end of the binding. If the value of the variable was to change, the text in the dropdown would change. If the text in the dropdown (imagine a textbox if it helps) were to change, the change would immediately be reflected in the variable which is in the controller.-->
@@ -34,16 +34,23 @@
         <option ng-repeat="x in vm.availableAnimations" value="{{x}}">{{x}}</option>
       </select>
 
-      <!-- Same as the one above -->
+      <!-- Works the same way as the one above -->
       <select ng-model="vm.selectedText">
         <option ng-repeat="x in vm.availableText" value="{{x}}">{{x}}</option>
       </select>
     </div>
 
-    <!-- needs ID so that the animate function can select the element
-    {{vm.selectedText}} displays the value of that variable as text so that the user can see the message (for this demo it is preset and can be changed via the dropdowns) -->
-    <h3>Select the animation and message. Then press the "Animate" button. Don't worry if it doesn't do what you think it will straight away. There is a little bit of a delay.</h3>
-    <h1 id="animated-text">{{vm.selectedText}}</h1>
+    <!-- Instructions -->
+    <ul>
+      <li>1. Select the animation from the first dropdown</li>
+      <li>2. Select the message from the second dropdown</li>
+      <li>3. Press the "Animate" button</li>
+      <li>4. Press the "Reset" button</li>
+      <li>5. Repeat</li>
+    </ul>
+
+    <!-- needs ID so that the animate function can select the element {{vm.selectedText}} displays the value of that variable as text so that the user can see the message (for this demo it is preset and can be changed via the dropdowns) -->
+    <h1 id="animated-text" ng-class="vm.animating ? vm.selectedAnimation : ''" ><span >{{vm.selectedText}}</span></h1>
 
   </body> 
 </html>
