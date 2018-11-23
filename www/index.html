@@ -18,8 +18,8 @@
     <script src="js/app.js"></script>
   </head>
 
-  <!-- ng-app connects the html to the angular module declared in app.js -->
-  <!-- ng-controller connects the controller for this page to the controller that was created in app.js and gives it the alias "vm", so that angular knows that vm.randomVariableName, refers to a property of the vm object in the controller in app.js (which is an extension of the controller itself) -->
+  <!-- 'ng-app' - angular module binding -->
+  <!-- 'ng-controller' - angular controller binding -->
   <body ng-app="starter" ng-controller="AnimationExample as vm">
 
     <div> <!-- groups the controls at the top into a box -->
@@ -28,9 +28,9 @@
       <button ng-click="vm.animate()" ng-model="vm.animateButtonState">{{vm.animateButtonState}}</button>
 
 
-      <!-- ng-model binds the value of the dropdown to the value of vm.selectedAnimation from the controller. AngularJS uses something called 2 way binding to update the values as they are changed on either end of the binding. If the value of the variable was to change, the text in the dropdown would change. If the text in the dropdown (imagine a textbox if it helps) were to change, the change would immediately be reflected in the variable which is in the controller.-->
+      <!-- angular binding to array of available animations in data model -->
       <select ng-model="vm.selectedAnimation">
-        <!-- ng-repeat simply iterates over an array (in this case the array is vm.availableAnimations and creates the element that it is used on (in this case the option element), repeatedly for each element in the array-->
+        <!-- ng-repeat iterates over the array of available animations -->
         <option ng-repeat="x in vm.availableAnimations" value="{{x}}">{{x}}</option>
       </select>
 
@@ -49,7 +49,7 @@
       <li>5. Repeat</li>
     </ul>
 
-    <!-- needs ID so that the animate function can select the element {{vm.selectedText}} displays the value of that variable as text so that the user can see the message (for this demo it is preset and can be changed via the dropdowns) -->
+    <!-- ID to allow the animate function to find this element and uses ng-class to toggle the selected animation depending on the value of a boolean -->
     <h1 id="animated-text" ng-class="vm.animating ? vm.selectedAnimation : ''" ><span >{{vm.selectedText}}</span></h1>
 
   </body> 
